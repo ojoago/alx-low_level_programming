@@ -1,16 +1,12 @@
-#include <stdio.h>
+#include "holberton.h"
 /**
- * print_binary - prints decimal as binary
- * @n: long integer
+ * print_binary - Entry Point
+ * @n: dec input
+ * Return: 0
  */
-
 void print_binary(unsigned long int n)
 {
-	signed long int size;
-	char c;
-	int flag;
-
-	size = sizeof(n) * 8 - 1;
+	int i = 0, count, k, temp;
 
 	if (n == 0)
 	{
@@ -18,29 +14,20 @@ void print_binary(unsigned long int n)
 		return;
 	}
 
-	if (n == 1)
+	temp = n;
+
+	while (temp != 0)
 	{
-		printf("1");
-		return;
+		i++;
+		temp = temp >> 1;
 	}
 
-	flag = 0;
-
-	while (size >= 0)
+	for (count = i - 1; count >= 0; count--)
 	{
-		c = (n >> size) & 1;
-
-		if (flag == 1)
-			putchar(c + '0');
+		k = n >> count;
+		if (k & 1)
+			printf("1");
 		else
-		{
-			if (c == 1)
-			{
-				putchar(c + '0');
-				flag = 1;
-			}
-		}
-
-		size -= 1;
+			printf("0");
 	}
 }
